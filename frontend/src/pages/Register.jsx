@@ -4,7 +4,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const registerUser = async (data) => {
-  const response = await axios.post("http://localhost:3000/user/register", data);
+  // Lấy đường dẫn từ biến môi trường
+  const apiUrl = import.meta.env.VITE_API_URL; 
+  const response = await axios.post(`${apiUrl}/user/register`, data);
   return response.data;
 };
 
