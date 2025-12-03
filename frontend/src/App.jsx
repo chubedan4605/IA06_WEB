@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 function Home() {
   return (
     <div className="w-dvw h-dvh flex items-center justify-center">
-      <div className="text-center bg-green-200 p-20 rounded-2xl shadow-2xl">
+      <div className="text-center bg-gray-100 p-20 rounded-2xl shadow-2xl">
         <h1 className="text-3xl font-bold mb-6">Chào mừng đến với User System</h1>
         <div className="space-x-4">
           <Link to="/login" className="px-4 py-2 bg-green-500 text-white rounded">Login</Link>
