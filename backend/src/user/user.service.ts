@@ -24,7 +24,7 @@ export class UserService {
     private jwtService: JwtService,
   ) {}
 
-  // ... (Hàm register giữ nguyên)
+  //Hàm register
   async register(createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
     const existingUser = await this.userModel.findOne({ email });
@@ -40,7 +40,6 @@ export class UserService {
     return { message: 'Đăng ký thành công', email: newUser.email };
   }
 
-  // ... (Hàm login giữ nguyên)
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
@@ -69,7 +68,7 @@ export class UserService {
     };
   }
 
-  // 3. REFRESH TOKEN (Đã sửa lỗi)
+  // 3. REFRESH TOKEN
   async refreshToken(token: string) {
     if (!token) throw new UnauthorizedException('Refresh Token không tồn tại');
 
@@ -85,26 +84,23 @@ export class UserService {
 
       return { accessToken };
     } catch {
-      // SỬA LỖI 2: Bỏ chữ (error) đi vì không dùng đến
       throw new UnauthorizedException(
         'Refresh token đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại.',
       );
     }
   }
 
-  // 4. LẤY PROFILE USER (Đã sửa lỗi)
+  // 4. LẤY PROFILE USER
   async getProfile(token: string) {
     try {
-      // SỬA LỖI 1: Thêm <JwtPayload>
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
 
       const user = await this.userModel
-        .findById(payload.sub) // Giờ payload.sub đã được hiểu là string
+        .findById(payload.sub)
         .select('-password');
 
       return user;
     } catch {
-      // SỬA LỖI 2: Bỏ (error)
       throw new UnauthorizedException('Token không hợp lệ');
     }
   }
