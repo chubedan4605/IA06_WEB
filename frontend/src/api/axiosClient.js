@@ -14,10 +14,7 @@ const axiosClient = axios.create({
 // Tự động gắn Access Token vào mỗi request gửi đi
 axiosClient.interceptors.request.use(
   (config) => {
-    // Lấy access token từ bộ nhớ (hoặc localStorage nếu muốn đơn giản)
-    // Theo đề bài: Access Token in memory. 
-    // Tuy nhiên để đơn giản cho code demo, ta sẽ lấy từ localStorage trước,
-    // (Làm đúng chuẩn memory phức tạp hơn cần Context Provider).
+    // Lấy access token từ bộ nhớ
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
