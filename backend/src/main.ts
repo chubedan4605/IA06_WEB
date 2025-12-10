@@ -13,7 +13,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173',
       'http://localhost:3000',
-      'https://your-frontend-project.vercel.app', // <-- Thay link thật của bạn vào đây sau khi deploy
+      'https://ia06-web-23120279.vercel.app', // <-- Thay link thật của bạn vào đây sau khi deploy
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
